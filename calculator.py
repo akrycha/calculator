@@ -76,6 +76,7 @@ def divide():
 
 def result_of_operation():
     second_number = insert_box.get('1.0', tk.END)
+    second_number = second_number[0:-1]
     #print(str(second_number))
     #print(operator == '/')
     #print(str(second_number) == str(0))
@@ -94,7 +95,7 @@ def result_of_operation():
     else:
         print('tutaj')
         result = convertstr(first_number)/convertstr(second_number)
-    result = first_number+operator+second_number[0:-1]+'='+str(result)
+    result = first_number+operator+second_number+'='+str(result)
     result_box.delete('1.0', tk.END)
     insert_box.delete('1.0', tk.END)
     result_box.insert(tk.INSERT, result)
@@ -154,8 +155,11 @@ def back():
     result_box.delete('end - 2 chars')
     insert_box.delete('end - 2 chars')
 
+
 def coma():
-    insert_box.insert(tk.INSERT, '.')
+    if '.' not in insert_box.get('1.0', tk.END):
+        insert_box.insert(tk.INSERT, '.')
+
 
 """buttons"""
 child = tk.PanedWindow()
