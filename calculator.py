@@ -105,6 +105,10 @@ def clear():
     result_box.delete('1.0', tk.END)
 
 
+def ce():
+    insert_box.delete('1.0', tk.END)
+
+
 def back():
     insert_box.delete('end - 2 chars')
     result_box.delete('end - 2 chars')
@@ -184,10 +188,10 @@ child = tk.PanedWindow()
 child.grid(row=2, column=0, sticky=tk.N)
 
 # first row of buttons
-tk.Button(child, text='CE', width=button_width, height=button_height).grid(row=2, column=0)
+tk.Button(child, text='CE',command=ce, width=button_width, height=button_height).grid(row=2, column=0)
 tk.Button(child, text='C', command=clear, width=button_width, height=button_height).grid(row=2, column=1)
 tk.Button(child, text='Back', command=back, width=button_width, height=button_height).grid(row=2, column=2)
-tk.Button(child, text='/', width=button_width, height=button_height, command=divide).grid(row=2, column=3)
+tk.Button(child, text='/', command=divide, width=button_width, height=button_height).grid(row=2, column=3)
 
 # second row of buttons
 tk.Button(child, text='7', command=insert_seven, width=button_width, height=button_height).grid(row=3, column=0)
