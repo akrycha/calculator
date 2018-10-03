@@ -33,7 +33,7 @@ def convertstr(s):
 def add():
     b = result_box.get('1.0', tk.END)[0:-1]
     a = insert_box.get('1.0', tk.END)[0:-1]
-    if a != '' and b == '':
+    if (a != '' and b == '') or (a != '' and b != ''):
         result_box.delete('1.0', tk.END)
         globals()["first_number"] = a
         globals()["operator"] = "+"
@@ -45,7 +45,7 @@ def add():
 def substract():
     b = result_box.get('1.0', tk.END)[0:-1]
     a = insert_box.get('1.0', tk.END)[0:-1]
-    if a != '' and b == '':
+    if (a != '' and b == '') or (a != '' and b != ''):
         result_box.delete('1.0', tk.END)
         globals()["first_number"] = a
         globals()["operator"] = "-"
@@ -57,7 +57,7 @@ def substract():
 def multiply():
     b = result_box.get('1.0', tk.END)[0:-1]
     a = insert_box.get('1.0', tk.END)[0:-1]
-    if a != '' and b == '':
+    if (a != '' and b == '') or (a != '' and b != ''):
         result_box.delete('1.0', tk.END)
         globals()["first_number"] = a
         globals()["operator"] = "*"
@@ -69,7 +69,7 @@ def multiply():
 def divide():
     b = result_box.get('1.0', tk.END)[0:-1]
     a = insert_box.get('1.0', tk.END)[0:-1]
-    if a != '' and b == '':
+    if (a != '' and b == '') or (a != '' and b != ''):
         result_box.delete('1.0', tk.END)
         globals()["first_number"] = a
         globals()["operator"] = '/'
