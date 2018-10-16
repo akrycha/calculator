@@ -174,11 +174,12 @@ def pm():
     a = a[0:-1]
     if a != '':
         a = convertstr(insert_box.get('1.0', tk.END))
-        print(a)
+        print(a>0)
         if a > 0:
             a = '-'+str(a)
         else:
-            a = str(a[1:])
+            a = str(a)[1:]
+            a = str(a)
         insert_box.delete('1.0', tk.END)
         insert_box.insert(tk.INSERT, a)
 
