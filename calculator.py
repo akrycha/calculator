@@ -2,23 +2,22 @@ import tkinter as tk
 
 root = tk.Tk()
 colour = 'cyan'
-root.configure(background=colour, width=50)
+root.configure(background=colour, width=70)
 button_width = 7
 button_height = 3
 first_number = 0
-#second_number = 0
 operator = ""
 
 
 """insert box & result box"""
-#pierwsza_liczba = tk.StringVar()
-#druga_liczba = tk.StringVar()
-result_box = tk.Text(root)
+result_box_label = tk.StringVar()
+result_box = tk.Label(root)
 result_box.grid(row=0, column=0)
-result_box.config(width=30, height=3)
-insert_box = tk.Text(root)
+result_box.config(width=30, height=3, background=colour, textvariable=result_box_label, justify="right", font=("Helvetica", 13, "bold"))
+insert_box_label = tk.StringVar()
+insert_box = tk.Label(root)
 insert_box.grid(row=1, column=0)
-insert_box.config(width=30, height=3)
+insert_box.config(width=30, height=3, background=colour, textvariable=insert_box_label, justify="right")
 
 
 def convertstr(s):
@@ -31,59 +30,59 @@ def convertstr(s):
 
 
 def add():
-    b = result_box.get('1.0', tk.END)[0:-1]
-    a = insert_box.get('1.0', tk.END)[0:-1]
+    b = result_box_label.get()
+    a = insert_box_label.get()
     if (a != '' and b == '') or (a != '' and b != ''):
-        result_box.delete('1.0', tk.END)
+        result_box_label.set('')
         globals()["first_number"] = a
         globals()["operator"] = "+"
         insert = a+"+"
-        result_box.insert(tk.INSERT, insert)
-        insert_box.delete('1.0', tk.END)
+        result_box_label.set(insert)
+        insert_box_label.set('')
 
 
 def substract():
-    b = result_box.get('1.0', tk.END)[0:-1]
-    a = insert_box.get('1.0', tk.END)[0:-1]
+    b = result_box_label.get()
+    a = insert_box_label.get()
     if (a != '' and b == '') or (a != '' and b != ''):
-        result_box.delete('1.0', tk.END)
+        result_box_label.set('')
         globals()["first_number"] = a
         globals()["operator"] = "-"
         insert = a + "-"
-        result_box.insert(tk.INSERT, insert)
-        insert_box.delete('1.0', tk.END)
+        result_box_label.set(insert)
+        insert_box_label.set('')
 
 
 def multiply():
-    b = result_box.get('1.0', tk.END)[0:-1]
-    a = insert_box.get('1.0', tk.END)[0:-1]
+    b = result_box_label.get()
+    a = insert_box_label.get()
     if (a != '' and b == '') or (a != '' and b != ''):
-        result_box.delete('1.0', tk.END)
+        result_box_label.set('')
         globals()["first_number"] = a
         globals()["operator"] = "*"
         insert = a + "*"
-        result_box.insert(tk.INSERT, insert)
-        insert_box.delete('1.0', tk.END)
+        result_box_label.set(insert)
+        insert_box_label.set('')
 
 
 def divide():
-    b = result_box.get('1.0', tk.END)[0:-1]
-    a = insert_box.get('1.0', tk.END)[0:-1]
+    b = result_box_label.get()
+    a = insert_box_label.get()
     if (a != '' and b == '') or (a != '' and b != ''):
-        result_box.delete('1.0', tk.END)
+        result_box_label.set('')
         globals()["first_number"] = a
         globals()["operator"] = '/'
         insert = a + "/"
-        result_box.insert(tk.INSERT, insert)
-        insert_box.delete('1.0', tk.END)
+        result_box_label.set(insert)
+        insert_box_label.set('')
 
 
 def result_of_operation():
-    b = result_box.get('1.0', tk.END)[0:-1]
-    a = insert_box.get('1.0', tk.END)[0:-1]
+    b = result_box_label.get()
+    a = insert_box_label.get()
     if a != '' and b != '':
-        second_number = insert_box.get('1.0', tk.END)
-        second_number = second_number[0:-1]
+        second_number = a
+        #second_number = second_number[0:-1]
         if operator == '+':
             result = convertstr(first_number)+convertstr(second_number)
         elif operator == '-':
@@ -94,94 +93,97 @@ def result_of_operation():
             result = "you can not divide by zero"
         else:
             result = convertstr(first_number)/convertstr(second_number)
-        result = first_number+operator+second_number+'='+str(result)
-        result_box.delete('1.0', tk.END)
-        insert_box.delete('1.0', tk.END)
-        result_box.insert(tk.INSERT, result)
+        result1 = str(first_number)+operator+str(second_number)+'='+str(result)
+        result_box_label.set('')
+        insert_box_label.set('')
+        result_box_label.set(result1)
 
 
 def clear():
-    insert_box.delete('1.0', tk.END)
-    result_box.delete('1.0', tk.END)
+    insert_box_label.set('')
+    result_box_label.set('')
 
 
 def ce():
-    insert_box.delete('1.0', tk.END)
+    insert_box_label.set('')
 
 
 def back():
-    insert_box.delete('end - 2 chars')
-    result_box.delete('end - 2 chars')
+    a = insert_box_label.get()
+    a = a[0:-1]
+    insert_box_label.set(a)
 
 
 def insert_zero():
-    insert_box.insert(tk.INSERT, 0)
+    ins = insert_box_label.get() + '0'
+    insert_box_label.set(ins)
 
 
 def insert_one():
-    insert_box.insert(tk.INSERT, 1)
+    ins = insert_box_label.get() + '1'
+    insert_box_label.set(ins)
 
 
 def insert_two():
-    insert_box.insert(tk.INSERT, 2)
+    ins = insert_box_label.get() + '2'
+    insert_box_label.set(ins)
 
 
 def insert_three():
-    insert_box.insert(tk.INSERT, 3)
+    ins = insert_box_label.get() + '3'
+    insert_box_label.set(ins)
 
 
 def insert_four():
-    insert_box.insert(tk.INSERT, 4)
+    ins = insert_box_label.get() + '4'
+    insert_box_label.set(ins)
 
 
 def insert_five():
-    insert_box.insert(tk.INSERT, 5)
+    ins = insert_box_label.get() + '5'
+    insert_box_label.set(ins)
 
 
 def insert_six():
-    insert_box.insert(tk.INSERT, 6)
+    ins = insert_box_label.get() + '6'
+    insert_box_label.set(ins)
 
 
 def insert_seven():
-    insert_box.insert(tk.INSERT, 7)
+    ins = insert_box_label.get() + '7'
+    insert_box_label.set(ins)
 
 
 def insert_eight():
-    insert_box.insert(tk.INSERT, 8)
+    ins = insert_box_label.get() + '8'
+    insert_box_label.set(ins)
 
 
 def insert_nine():
-    insert_box.insert(tk.INSERT, 9)
-
-
-def back():
-    result_box.delete('end - 2 chars')
-    insert_box.delete('end - 2 chars')
+    ins = insert_box_label.get() + '9'
+    insert_box_label.set(ins)
 
 
 def coma():
-    a = insert_box.get('1.0', tk.END)
-    a = a[0:-1]
+    a = insert_box_label.get()
+    # a = a[0:-1]
     print('a=', a)
     if a == '':
-        insert_box.insert(tk.INSERT, '0.')
-    elif '.' not in insert_box.get('1.0', tk.END):
-        insert_box.insert(tk.INSERT, '.')
+        insert_box_label.set('0.')
+    elif '.' not in insert_box_label.get():
+        insert_box_label.set(a+'.')
 
 
 def pm():
-    a = insert_box.get('1.0', tk.END)
-    a = a[0:-1]
+    a = insert_box_label.get()
     if a != '':
-        a = convertstr(insert_box.get('1.0', tk.END))
-        print(a>0)
+        a = convertstr(a)
+        print(a > 0)
         if a > 0:
             a = '-'+str(a)
         else:
-            a = str(a)[1:]
-            a = str(a)
-        insert_box.delete('1.0', tk.END)
-        insert_box.insert(tk.INSERT, a)
+            a = str(abs(a))
+        insert_box_label.set(a)
 
 
 """buttons"""
